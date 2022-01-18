@@ -21,11 +21,14 @@ def process_symbol(symbol):
     daily = daily.set_index('date')
     for date in daily.index.tolist():
         fifteen = api.get_bars(symbol, TimeFrame.Fifteen, date, date, adjustment='raw').df
+        # Remove pre-market
+        fifteen = fifteen.loc[fifteen.index.time >= datetime.time(14,30)]
+        # Remove post-market
+        fifteen = fifteen.loc[fifteen.index.time <= datetime.time(20,45)]
         daily.loc[date, '15min_close'] = fifteen.iloc[0].close
         daily.loc[date, 'is_positive_start'] = bool(fifteen.iloc[0].close > fifteen.iloc[0].open)
         daily.loc[date, 'is_positive_end'] = bool(fifteen.iloc[0].close < daily.loc[date].close)
         daily.loc[date, '15min_volume'] = fifteen.iloc[0].volume
-
     with open("{}.csv".format(symbol), "w") as fp:
         daily.to_csv(fp)
         
