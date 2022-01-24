@@ -1,3 +1,17 @@
+# Close of the Day Stock price predictor
+  Input : Day Open, ATR, FIrst 15 Min candle is green (True) or Red(False)
+  Output : Day Close
+  
+  Usage:
+      test_and_plot("ticker")
+           The program fetches 1000 Calendar days data from Alpaca. Train the model. 
+           Plot the last 50 Days of predicted close price vs  actual close price.
+  
+  Environment Variables Needed:
+      APCA_API_SECRET_KEY
+      APCA_API_KEY_ID
+
+  Model Used: Linear Regression.
 # ML Stocks Predictor Positive Movement
 
 This is to use AWS SageMakers machine learning to see if there is predictive correlation with positive open (15min candle) of a stock to its future value.
