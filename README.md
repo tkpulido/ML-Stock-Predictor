@@ -12,6 +12,7 @@
       APCA_API_KEY_ID
 
   Model Used: Linear Regression.
+  Example usage is in project.ipynb
 # ML Stocks Predictor Positive Movement
 
 This is to use AWS SageMakers machine learning to see if there is predictive correlation with positive open (15min candle) of a stock to its future value.
